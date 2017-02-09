@@ -2,7 +2,7 @@
   "name": "react-accordion",
   "version": "1.0.0",
   "description": "Accordion UI based on React",
-  "main": "index.js",
+  "main": "pages/index.js",
   "author": "Bishal Pantha",
   "license": "MIT",
   "devDependencies": {
@@ -19,6 +19,8 @@
     "next": "^1.2.3"
   },
   "scripts": {
-    "dev":"next"
+    "dev":"next",
+    "build": "next build",
+    "start": "next start"
   }
 }
