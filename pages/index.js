@@ -3,54 +3,60 @@ import Head from 'next/head';
 
 import Accordion from '../components/accordion';
 
-const data = [
-  {
-    open: true,
-    title: "Open1",
-    alternateTitle: "Close1",
-    content: `Lorem ipsum dolor sit amet,
-              consectetur adipiscing elit,
-              sed do eiusmod tempor incididunt
-              ut labore et dolore magna aliqua.
-              Ut enim ad minim veniam, quis
-              nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat.
-              Duis aute irure dolor in reprehenderit
-              in voluptate velit esse cillum dolore
-              eu fugiat nulla pariatur. Excepteur
-              sint occaecat cupidatat non proident,
-              sunt in culpa qui officia deserunt
-              mollit anim id est laborum.`
-  },
-  {
-    open: false,
-    title: "Open2",
-    alternateTitle: "Close2",
-    content: `Lorem ipsum dolor sit amet,
-              consectetur adipiscing elit,
-              sed do eiusmod tempor incididunt
-              ut labore et dolore magna aliqua.
-              Ut enim ad minim veniam, quis
-              nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat.
-              Duis aute irure dolor in reprehenderit
-              in voluptate velit esse cillum dolore
-              eu fugiat nulla pariatur. Excepteur
-              sint occaecat cupidatat non proident,
-              sunt in culpa qui officia deserunt
-              mollit anim id est laborum.`
-  }
-];
-export default () => {
-  return (
-    <div>
-      <Head>
-        <meta charSet="utf-8" />
-        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
-        <link rel="stylesheet" href="static/index.css" />
-      </Head>
-      <Accordion data={data} />
-    </div>
-  );
-}
+const data1 = { title: 'Open1' };
+
+const data2 = {
+  initialPanelState: true,
+  title: 'Open2',
+  alternateTitle: 'Close2',
+  content: ` This is a content for second accordion
+                  `
+};
+
+const Content = () => (
+  <div className="container1">
+    <h1>This is a content for first accordion</h1>
+    <dl className="rs-definitionlist">
+      <dt className="rs-definitionlist__term">
+        PAYBACK Kartennummer für REWE eBon:
+      </dt>
+      <dd className="rs-definitionlist__item">paybackNumber</dd>
+    </dl>
+    <p>
+      Einfach die PAYBACK Karte beim Kauf an der Kasse vorlegen.
+                Wenige Minuten später kommt der digitalen Kassenbon per E-Mail an
+                die im REWE Kundenkonto hinterlegte E-Mail-Adresse.
+                Diese E-Mail-Adresse kann im Kundenkonto unter »Meine Daten« bearbeitet werden.
+                Weitere Informationen unter Fragen und Antworten und Allgemeinen
+                Geschäftsbedingungen/Datenschutz.
+    </p>
+  </div>
+);
+
+const Content2 = 'This is a content for second accordion';
+export default () => (
+  <div>
+    <Head>
+      <meta charSet="utf-8" />
+      <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      <link
+        rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"
+      />
+      <link rel="stylesheet" href="static/index.css" />
+    </Head>
+    <Accordion {...data1}>
+      <Content />
+    </Accordion>
+    <style jsx>
+      {`
+        p {
+          color: blue;
+        }
+      `}
+    </style>
+    <Accordion {...data2}>
+      This is a content for second accordion
+    </Accordion>
+  </div>
+);
