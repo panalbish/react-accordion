@@ -23,8 +23,8 @@ const defaultComponent = () => (
 );
 
 test('renders the default Accordion Component', (t) => {
-  const eBonBlockTree = render.create(defaultComponent()).toJSON();
-  t.snapshot(eBonBlockTree);
+  const accordionTree = render.create(defaultComponent()).toJSON();
+  t.snapshot(accordionTree);
   const wrapper = shallow(defaultComponent());
   t.is(wrapper.instance().props.title, 'Dummy Accordion');
   t.is(wrapper.instance().props.alternateTitle, '');
