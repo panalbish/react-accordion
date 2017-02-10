@@ -3,12 +3,14 @@ import Head from 'next/head';
 
 import Accordion from '../components/accordion';
 
-const data1 = { title: 'Open1' };
+const data1 = {
+  initialPanelState: true,
+  title: 'Title'
+};
 
 const data2 = {
-  initialPanelState: true,
-  title: 'Open2',
-  alternateTitle: 'Close2',
+  title: 'Open',
+  alternateTitle: 'Close',
   content: ` This is a content for second accordion
                   `
 };
@@ -51,7 +53,7 @@ export default () => (
     <style jsx>
       {`
         p {
-          color: blue;
+          color: gold;
         }
       `}
     </style>
