@@ -1,32 +1,19 @@
-import React, { Component, PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types'; // ES6
+
 import classNames from 'classnames';
 
-class Accordion extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { open: null };
-    this.onAccordionClick = this.onAccordionClick.bind(this);
-  }
+const Accordion = ({ alternateTitle, title, children, initialPanelState }) => {
+  const [open, setOpen] = React.useState(initialPanelState);
 
-  componentWillMount() {
-    const { initialPanelState } = this.props;
-    this.setState({ open: initialPanelState });
-  }
-
-  onAccordionClick() {
-    const { open } = this.state;
-    this.setState({ open: !open });
-  }
-
-  renderTitle() {
-    const { open } = this.state;
-    const { alternateTitle, title } = this.props;
+  const renderTitle = () => {
     const titleToggleClass = classNames(
       'fa',
       open ? 'fa-angle-down fa-rotate-180' : 'fa-angle-down'
     );
     return (
-      <div className="title" onClick={this.onAccordionClick}>
+      // eslint-disable-next-line jsx-a11y/no-static-element-interactions
+      <div className="title" onClick={() => setOpen(!open)}>
         <div className="arrow-wrapper">
           <i className={titleToggleClass} />
         </div>
@@ -35,10 +22,9 @@ class Accordion extends Component {
         </span>
       </div>
     );
-  }
+  };
 
-  renderContent() {
-    const { open } = this.state;
+  const renderContent = () => {
     const contentParentClass = classNames(
       'content',
       open ? 'content-open' : null
@@ -50,26 +36,25 @@ class Accordion extends Component {
     return (
       <div className={contentParentClass}>
         <div className={contentTextClass} >
-          {this.props.children}
+          {children}
         </div>
       </div>
     );
-  }
+  };
 
-  render() {
-    return (
-      <div className="accordion">
-        {this.renderTitle()}
-        {this.renderContent()}
-      </div>
-    );
-  }
-}
+
+  return (
+    <div className="accordion">
+      {renderTitle()}
+      {renderContent()}
+    </div>
+  );
+};
 
 Accordion.propTypes = {
   alternateTitle: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
-  children: React.PropTypes.oneOfType([
+  children: PropTypes.oneOfType([
     PropTypes.element,
     PropTypes.string
   ]).isRequired,
